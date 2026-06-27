@@ -6,6 +6,8 @@ import { MonitoringController } from '../controllers/MonitoringController';
 import { PregnancyProfileController } from '../controllers/PregnancyProfileController';
 import { GuidanceController } from '../controllers/GuidanceController';
 import { HealthSyncController } from '../controllers/HealthSyncController';
+import { ChatbotController } from '../controllers/ChatbotController';
+import { ExerciseController } from '../controllers/ExerciseController';
 import { authMiddleware, validate } from '../../infrastructure/web/middlewares';
 
 import {
@@ -62,5 +64,10 @@ router.post('/health/sync', authMiddleware as any, validate(healthSyncSchema), H
 router.get('/health/history', authMiddleware as any, HealthSyncController.getHistory);
 router.get('/health/latest', authMiddleware as any, HealthSyncController.getLatest);
 router.get('/health/batch/:batchId', authMiddleware as any, HealthSyncController.getBatchDetails);
+
+// --- Chatbot & Exercise Routes ---
+router.post('/chat/message', authMiddleware as any, ChatbotController.getChatResponse);
+router.post('/exercise/recommend', authMiddleware as any, ExerciseController.getRecommendations);
+router.get('/exercise/all', authMiddleware as any, ExerciseController.getAllExercises);
 
 export default router;
