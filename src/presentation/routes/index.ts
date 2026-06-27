@@ -8,6 +8,7 @@ import { GuidanceController } from '../controllers/GuidanceController';
 import { HealthSyncController } from '../controllers/HealthSyncController';
 import { ChatbotController } from '../controllers/ChatbotController';
 import { ExerciseController } from '../controllers/ExerciseController';
+import { SosController } from '../controllers/SosController';
 import { authMiddleware, validate } from '../../infrastructure/web/middlewares';
 
 import {
@@ -69,5 +70,8 @@ router.get('/health/batch/:batchId', authMiddleware as any, HealthSyncController
 router.post('/chat/message', authMiddleware as any, ChatbotController.getChatResponse);
 router.post('/exercise/recommend', authMiddleware as any, ExerciseController.getRecommendations);
 router.get('/exercise/all', authMiddleware as any, ExerciseController.getAllExercises);
+
+// --- SOS Route ---
+router.post('/sos/activate', authMiddleware as any, SosController.activateSos);
 
 export default router;
